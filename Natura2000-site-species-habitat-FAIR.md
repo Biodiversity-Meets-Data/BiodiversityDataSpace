@@ -1,5 +1,6 @@
 # Natura 2000 FAIR Data 
 
+## Challenge 
 The information attached to each Natura 2000 site represents imporant metadata for our Biodiversity Data Space. 
 However, this information is often scattered across different files and API endpoints, 
 lacking standardisation and ontology mapping. This is an initial effort to provide a solution that needs adoption within the BMD project.
@@ -68,7 +69,6 @@ To make this data FAIR, we can do a few things. ap it to established ontologies:
 ```json
 {
   "@context": {
-    // Integrated definitions from CSV files
     "population_type": "natura:populationType",
     "p": "natura:populationType/Permanent",
     "i": "http://qudt.org/vocab/unit/Individual"
@@ -103,11 +103,11 @@ To make this data FAIR, we can do a few things. ap it to established ontologies:
 INSPIRE defines the structure and core attributes of Protected Sites (geometry, site code, name, designation, legal references). 
 Our JSON-LD serialisation needs to incorporates these as well. 
 
-A simple JSON example demonstrating FAIR compliance is available here.
+A simple JSON example demonstrating FAIR compliance is available [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/bmd-site-example.json).
 
 ## Benefits
 
-- **Self-describing data**: No external documentation needed
-- **Machine actionable**: Enables sophisticated ecological queries
-- **Interoperable**: Compatible with global biodiversity data portals
-- **FAIR compliant**: Findable, Accessible, Interoperable, Reusable
+-  No external documentation needed
+- Machine actionable
+- Interoperable: Compatible with global biodiversity data portals
+
