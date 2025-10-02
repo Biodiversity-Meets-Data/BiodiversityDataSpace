@@ -1,0 +1,144 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "dwc": "http://rs.tdwg.org/dwc/terms/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "eionet": "https://dd.eionet.europa.eu/vocabulary/biodiversity/",
+    "gbif": "https://www.gbif.org/species/",
+    "natura": "https://www.eea.europa.eu/ds_resolveuid/7KFIG4CXM1",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+
+    "population_type": {
+      "@id": "natura:populationType",
+      "@type": "@id"
+    },
+    "p": "natura:populationType/Permanent",
+    "r": "natura:populationType/Reproducing",
+    "c": "natura:populationType/Concentration",
+    "w": "natura:populationType/Wintering",
+
+    "counting_unit": {
+      "@id": "dwc:measurementUnit",
+      "@type": "@id"
+    },
+    "i": "unit:Individual"
+  },
+
+  "@type": "dcat:Dataset",
+  "name": "Natura 2000 Integrated Site-Habitat-Species Data",
+  "description": "Integrated view of species occurrences within specific habitats of Natura 2000 sites",
+  "distribution": {
+    "@type": "dcat:DataService",
+    "accessURL": "https://discodata.eea.europa.eu/sql?query=select%20ssld.site_code%2C%20ssld.species_name%2C%20ssld.species_code%2C%20ssld.id_eunis%2C%20ssld.species_group_name%2C%20ssld.scientific_name%2C%20ssld.common_name%2C%20ssld.code_2000%2C%0A%20%20%20%20%20%20%20%20ssld.lower_bound%2C%20ssld.upper_bound%2C%20ssld.counting_unit%2C%20ssld.abundance_category%2C%20ssld.population_type%2C%20ssld.appears_number_sites%2C%0A%20%20%20%20%20%20%20%20%27http%3A%2F%2Feunis.eea.europa.eu%2Fspecies%2F%27%20%2B%20CAST%28ssld.id_eunis%20AS%20VARCHAR%29%20AS%20eunisurl%2C%0A%20%20%20%20%20%20%20%20ssld.E27_threat_code%2C%20ssld.E27_threat_name%2C%20ssld.EU_threat_code%2C%20ssld.EU_threat_name%2C%20ssld.WO_threat_code%2C%20ssld.WO_threat_name%2C%0A%20%20%20%20%20%20%20%20hab.site_name%2C%20hab.habitat_unique_id%2C%0A%20%20%20%20%20%20%20%20hrt.threat_code%2C%20hrt.main_threat%2C%20hrt.description%0Afrom%0A%20%20BISE.latest.Site_Species_List_Details%20ssld%0ALEFT%20JOIN%20%5BEUNIS%5D.%5Blatest%5D.%5BHabitat_Natura_2000%5D%20hab%20ON%20ssld.site_code%20%3D%20hab.id_site%0ALEFT%20JOIN%20%5BEUNIS%5D.%5Blatest%5D.%5BHabitat_Redlist_Threats%5D%20hrt%20ON%20hab.habitat_unique_id%20%3D%20hrt.habitat_unique_id&p=1&nrOfHits=10"
+  },
+
+  "about": {
+    "@type": ["Place", "ProtectedSite", "natura:Natura2000Site"],
+    "natura:site_code": "AT1101112",
+    "name": "Nickelsdorfer Haidel",
+    "containsPlace": [
+      {
+        "@type": "natura:AnnexIHabitat",
+        "habitatID": "ANNEX1_6240",
+        "habitatCode": "6240",
+        "description": "Sub-continental steppe-grasslands",
+        "supports": {
+          "@type": "dwc:Organism",
+          "occurrenceID": "AT1101112-1917-ANNEX1_6240",
+          "taxon": {
+            "@type": "dwc:Taxon",
+            "scientificName": "Artemisia pancicii",
+            "scientificNameID": "gbif:154421",
+            "taxonRank": "species",
+            "natura:code2000": "1917",
+            "natura:speciesGroup": "Flowering Plants"
+          },
+          "conservationStatus": [
+            {
+              "@type": "dwc:ConservationStatus",
+              "statusCode": "VU",
+              "status": "Vulnerable",
+              "system": "E27 Threat Status"
+            },
+            {
+              "@type": "dwc:ConservationStatus",
+              "statusCode": "DD",
+              "status": "Data Deficient",
+              "system": "EU Threat Status"
+            }
+          ],
+          "measurements": [
+            {
+              "@type": "dwc:MeasurementOrFact",
+              "measurementType": "natura:populationSize",
+              "measurementValue": "20-100",
+              "measurementUnit": "unit:Individual",
+              "measurementMethod": "natura:populationEstimate"
+            },
+            {
+              "@type": "dwc:MeasurementOrFact",
+              "measurementType": "natura:appearsInSites",
+              "measurementValue": "7",
+              "measurementUnit": "Number"
+            }
+          ],
+          "population_type": "p",
+          "references": "http://eunis.eea.europa.eu/species/154421"
+        }
+      },
+      {
+        "@type": "natura:AnnexIHabitat",
+        "habitatID": "ANNEX1_6510",
+        "habitatCode": "6510",
+        "description": "Lowland hay meadows",
+        "supports": {
+          "@type": "dwc:Organism",
+          "occurrenceID": "AT1101112-1917-ANNEX1_6510",
+          "taxon": {
+            "@type": "dwc:Taxon",
+            "scientificName": "Artemisia pancicii",
+            "scientificNameID": "gbif:154421",
+            "taxonRank": "species",
+            "natura:code2000": "1917",
+            "natura:speciesGroup": "Flowering Plants"
+          },
+          "conservationStatus": [
+            {
+              "@type": "dwc:ConservationStatus",
+              "statusCode": "VU",
+              "status": "Vulnerable",
+              "system": "E27 Threat Status"
+            },
+            {
+              "@type": "dwc:ConservationStatus",
+              "statusCode": "DD",
+              "status": "Data Deficient",
+              "system": "EU Threat Status"
+            }
+          ],
+          "measurements": [
+            {
+              "@type": "dwc:MeasurementOrFact",
+              "measurementType": "natura:populationEstimate",
+              "measurementValue": {
+                "@type": "qudt:QuantityRange",
+                "qudt:lowerBound": 20,
+                "qudt:upperBound": 100
+              },
+              "measurementUnit": "unit:Individual"
+            },
+            {
+              "@type": "dwc:MeasurementOrFact",
+              "measurementType": "natura:appearsInSites",
+              "measurementValue": "7",
+              "measurementUnit": "Number"
+            }
+          ],
+          "population_type": "p",
+          "references": "http://eunis.eea.europa.eu/species/154421"
+        }
+      }
+    ]
+  }
+}
