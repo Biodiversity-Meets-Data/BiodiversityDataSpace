@@ -5,7 +5,7 @@ The information attached to each Natura 2000 site represents imporant metadata f
 However, this information is often scattered across different files and API endpoints, 
 lacking standardisation and ontology mapping. This is an initial effort to provide a solution that needs adoption within the BMD project.
 
-Here's a snippet of data about a site in Austria, obtained from the EEA Data Explorer where you can make SQL queries against the database:
+Here's a snippet of data about a site in Austria, obtained from the [EEA Data Explorer](https://discodata.eea.europa.eu/index.html#) where you can make SQL queries against the database:
 
 ```sql
 SELECT * FROM [BISE].[latest].[Site_Species_List_Details] where site_code='AT1101112'
@@ -100,7 +100,7 @@ To make this data FAIR, we can do a few things. ap it to established ontologies:
 }
 ```
 
-INSPIRE defines the structure and core attributes of Protected Sites (geometry, site code, name, designation, legal references). 
+INSPIRE defines (https://github.com/INSPIRE-MIF/technical-guidelines/blob/main/data/ps/dataspecification_ps.adoc) the structure and core attributes of Protected Sites (geometry, site code, name, designation, legal references). 
 Our JSON-LD serialisation needs to incorporates these as well. 
 
 A simple JSON example demonstrating FAIR compliance is available [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/bmd-site-example.json).
