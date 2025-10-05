@@ -49,7 +49,7 @@
           "taxon": {
             "@type": "dwc:Taxon",
             "scientificName": "Artemisia pancicii",
-            "scientificNameID": "gbif:154421",
+            "scientificNameID": "gbif:8129199",
             "taxonRank": "species",
             "natura:code2000": "1917",
             "natura:speciesGroup": "Flowering Plants"
@@ -98,7 +98,7 @@
           "taxon": {
             "@type": "dwc:Taxon",
             "scientificName": "Artemisia pancicii",
-            "scientificNameID": "gbif:154421",
+            "scientificNameID": "gbif:8129199",
             "taxonRank": "species",
             "natura:code2000": "1917",
             "natura:speciesGroup": "Flowering Plants"
