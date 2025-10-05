@@ -103,11 +103,7 @@ To make this data FAIR, we can do a few things. ap it to established ontologies:
 INSPIRE defines (https://github.com/INSPIRE-MIF/technical-guidelines/blob/main/data/ps/dataspecification_ps.adoc) the structure and core attributes of Protected Sites (geometry, site code, name, designation, legal references). 
 Our JSON-LD serialisation needs to incorporates these as well. 
 
-A simple JSON example demonstrating FAIR compliance is available [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/bmd-site-example.json).
+A simple JSON example demonstrating FAIR is here [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/bmd-site-example.json).
+A more elaborate JSON-LD example: is [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/AT1101112_FAIR.jsonld)
 
-## Benefits
-
--  No external documentation needed
-- Machine actionable
-- Interoperable: Compatible with global biodiversity data portals
 
