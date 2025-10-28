@@ -85,4 +85,49 @@ if geometry → use it directly;
 else if site → resolve via metadata catalogue;
 else if locality or countryCode → use country boundaries.
 
+This is one way to strcuture the query with FAIR, data space, and semantic JSON-LD in mind: 
+
+```
+Query
+├── Context & Semantics (JSON-LD)
+├── Consumer & Authentication (if needed) 
+├── Core Question
+│   ├── Taxon (Darwin Core + EUNIS)
+│   ├── Spatial (Natura2000 sites + geometry)
+│   ├── Temporal (range + resolution)
+│   └── Theme (occurrence/modelled/etc.)
+├── Analysis Specification
+│   ├── Indicator (population_trend)
+│   ├── Method (TRIM, state-space)
+│   └── Parameters
+├── Output Requirements
+│   ├── Format (NetCDF, GeoJSON)
+│   ├── Visualizations
+│   └── Delivery endpoint
+├── Data Provenance
+├── Usage Policies
+└── Service Information
+
+```
+We also need to think about the response structure 
+
+```
+{
+  "@context": "...",
+  "queryId": "urn:uuid:1234-5678-90ab-cdef",
+  "status": "completed",
+  "result": {
+    "dataCube": "https://data.bmd.eu/cubes/trend-12345.nc",
+    "visualisations": {
+      "timeSeries": "https://viz.bmd.eu/ts/12345",
+      "trendMap": "https://viz.bmd.eu/map/12345"
+    },
+    "metadata": {
+      "computationDate": "2025-10-28T14:30:00Z",
+      "sourcesUsed": ["GBIF", "EEA"]
+    }
+  }
+}
+```
+
 
