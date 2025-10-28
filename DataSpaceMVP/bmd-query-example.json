@@ -1,0 +1,102 @@
+
+  "queryId": "urn:uuid:1234-5678-90ab-cdef",
+  "queryType": "species_trend",
+  "queryText": "How has the population of Lanius collurio changed in Austria (or selected area) between 1995 and 2025?",
+
+  "consumer": {
+    "participantID": "urn:bmd:participant:VRE-HabitatsDirective",
+    "organisation": "Biodiversity Meets Data (BMD)",
+    "role": "DataConsumer"
+  },
+
+  "filter": {
+    "taxon": {
+      "scientificName": "Lanius collurio",
+      "taxonID": "https://www.catalogueoflife.org/data/taxon/3S7BJ",
+      "eunisId": "https://biodiversity.europa.eu/species/1098",
+      "code2000": "A338"
+    },
+
+    "spatial": {
+      "countryCode": "AT",
+      "locality": "Gut Walterskirchen",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[5.2, 51.8], [6.2, 51.8], [6.2, 52.4], [5.2, 52.4], [5.2, 51.8]]]
+      },
+      "shapefileReference": "s3://bmd-data/uploads/user123/area_xyz.zip"
+    },
+
+    "site": {
+      "codeSite": "AT2119000",
+      "siteName": "Pannonische Sandfluren bei Gols",
+      "directive": "Habitats",
+      "annex": "Annex I"
+    },
+
+    "temporal": {
+      "from": "1995-01-01",
+      "to": "2025-12-31"
+    },
+
+  "providers": [
+      {
+        "participantID": "urn:bmd:participant:GBIF",
+        "organisation": "Global Biodiversity Information Facility",
+        "catalogueURI": "https://api.gbif.org/v1/dataset"
+      },
+      {
+        "participantID": "urn:bmd:participant:EEA",
+        "organisation": "European Environment Agency",
+        "catalogueURI": "https://sdi.eea.europa.eu/catalogue"
+      }
+    ],
+    "datasetType": ["occurrence", "environmental", "modelled"]
+  },
+  "analysis": {
+    "indicator": "population_trend",
+    "method": ["TRIM", "state-space model"],
+    "parameters": {
+      "spatialResolution": "10km",
+      "temporalResolution": "1 year"
+    }
+  },
+
+  "output": {
+    "product": "data_cube",
+    "format": "NetCDF",
+    "visualisations": ["time_series", "map"],
+    "delivery": {
+      "endpoint": "https://data.bmd.eu/api/cubes/{id}",
+      "accessMode": "federated"
+    }
+  },
+
+"usagePolicy": {
+    "policyID": "urn:bmd:policy:cc-by-4.0",
+    "policyURI": "https://creativecommons.org/licenses/by/4.0/",
+    "rights": ["use", "reproduce", "distribute"],
+    "obligations": ["attributeSource", "shareAlike"],
+    "prohibitions": []
+  },
+
+  "service": {
+    "serviceID": "urn:bmd:service:trend-analysis-v1",
+    "description": "Population trend cube generation service",
+    "version": "1.0.0",
+    "endpoint": "https://data.bmd.eu/api/query"
+  },
+
+  "provenance": {
+    "submittedBy": "VRE-HabitatsDirective",
+    "submissionDate": "2025-10-28T12:00:00Z",
+    "workflowID": "urn:bmd:workflow:population-trend-v1",
+    "trace": [
+      {
+        "step": "query_submission",
+        "timestamp": "2025-10-28T12:00:00Z",
+        "actor": "VRE-HabitatsDirective"
+      }
+}
+}
+
