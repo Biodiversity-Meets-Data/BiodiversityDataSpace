@@ -1,11 +1,28 @@
 This describes some of the initial ideas behind the first version of the data space. 
 
-We are trying to align with aligns with Darwin Core Data Package ideas, Data Space concepts (participants, usage policies, provenance).
+We need to understand how to capture the query. The query schema/framework can be thought of as the entry point. 
+Then FAIR and Data Space compoments come in. What happens after the query. How we store, describe, and connect the different artefacts (cubes, datasets, results etc). This is where RO-Crate, sementics, and Triplestore will come into play. 
+
+
+The query schema is the entry point, but the real FAIR and Data Space power comes from what happens after the query — how you store, describe, and connect the resulting artefacts (queries, cubes, datasets) via RO-Crates, semantic metadata, and your TripleStore.
+
+
+
+
+| Component                           | Role in the BMD Data Space                                                                                                                                                 
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **RO-Crate**                        | FAIR packaging format to encapsulate the workflow, query, input data, process, and result (cube, visualisation).            |  
+| **Semantic metadata (RDF/JSON-LD)** | The data model that gives machine-actionable meaning to the RO-Crate contents (e.g., DwC, DCAT, PROV). |  
+| **TripleStore (RDF store)**   | The internal database that stores and links all semantic entities (species, sites, datasets, queries, provenance).  |             |
+
+
+
+We are also trying to align with Darwin Core Data Package ideas (https://gbif.github.io/dwc-dp/dp/), Data Space concepts (participants, usage policies, provenance).
 and also with the awareness of EUNIS / Natura 2000 data models. 
 
-WP3 and WP5 are also proceedign with data cube and VRE work. 
+BMD WP3 and WP5 tasks are also proceeding with data cube and VRE work. 
 
-One of the core design idea is to keep a metadata layer within the data space (that sits between the query interface/VRE and the data cube store).
+A core design idea is to keep a metadata layer within the data space (that sits between the query interface/VRE and the data cube store).
 
 This layer might need key crosswalk table such as this to connect species taxon id with site code etc. 
 
@@ -66,24 +83,25 @@ site-species data
     },
 ```
 
-The idea is when a query mentions a species or site, the query parser looks up this metadata table to:
+When a query mentions a species or site, the query parser looks up this metadata table to:
 
 find the CoL ID, EUNIS ID, and Habitat Directive code;
 resolve spatial extent via the Natura 2000 site geometry;
 enrich the query before matching it to cubes.
 
-But the query might not specify a Natura 2000 site or EUNIS code, but rather a geographic area defined by:
+But the query might not specify a Natura 2000 site or EUNIS code, but can specity a geographic area defined by:
 
 a country, a named locality or region, or a geometry file (e.g., shapefile, GeoJSON, WKT).
 
 So we should make sure the query JSON supports both:
 
-semantic filters (e.g., Natura2000 site, species, directive), and spatial filters (country, locality, polygon).
+semantic filters (e.g., Natura2000 site, species, directive), and 
+spatial filters (country, locality, polygon).
 
 The query parser can decide precedence:
-if geometry → use it directly;
-else if site → resolve via metadata catalogue;
-else if locality or countryCode → use country boundaries.
+if geometry the use it directly;
+else if site then resolve via metadata catalogue;
+else if locality or countryCode then use country boundaries. etc. This will also depend on stakeholder feedback. 
 
 This is one way to strcuture the query with FAIR, data space, and semantic JSON-LD in mind: 
 
@@ -109,7 +127,8 @@ Query
 └── Service Information
 
 ```
-We also need to think about the response structure 
+
+We also need to think about the response structure:
 
 ```
 {
@@ -129,5 +148,7 @@ We also need to think about the response structure
   }
 }
 ```
+
+Query example: https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/DataSpaceMVP/bmd-query-example.json
 
 
