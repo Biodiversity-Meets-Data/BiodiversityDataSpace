@@ -19,7 +19,7 @@ This could be a request such as:
 
 ## **2. VRE Starts a Workflow**
 
-Based on the user’s request, the VRE triggers an workflow using the **Workflow Engine & Workflow API** (this could be same or differnet cloud resource) 
+Based on the user's request, the VRE triggers a workflow using the **Workflow Engine & Workflow API** (this could be same or different cloud resource)
 An example of workflow engine is [Argo](https://argoproj.github.io/workflows/) and workflow yaml definition can be found here in [workflow.earth](https://workflow.earth/dataset/cwr/3ad120fbd197bec61231). These yaml definitions 
 can include parameters and different artifact details that are needed to run the workflow: 
 
@@ -103,7 +103,7 @@ The **BMD Data Space** receives the workflow output and processes it into two co
 Semantic metadata describing the dataset (for example species ID, site code, model type, provenance data, timestamps, etc.) is stored.  
 These metadata should for alignment around * *siteCode*, * *speciesCode*, * *habitatCode*, * workflow identifiers, * provenance statements (RO-Crate, PROV-O).
 
-Some of these metadata can also already by there via the datacubing process or prior data ingestion.  
+Some of these metadata can also already be there via the datacubing process or prior data ingestion.  
 
 
 ### **4b. Data ingestion into the cube or catalogue**
