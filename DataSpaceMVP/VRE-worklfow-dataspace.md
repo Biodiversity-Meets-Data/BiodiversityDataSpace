@@ -88,7 +88,8 @@ The workflow executes on the compute layer associated with the VRE. **NOTE: chec
 
 When the workflow finishes:
 
-* it generates one or more **outputs**. These could be datasets, maps, statistics, CSVs, derived rasters, plots etc.
+* it generates a [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) containing one or more **outputs**.
+These could be datasets, maps, statistics, CSVs, derived rasters, plots etc.
 * the Workflow Engine temporarily stores these outputs and notifies the Data Space that a dataset is ready.
 
 At this stage, the output is not yet integrated into the BMD dataspace or visualisation engine.
