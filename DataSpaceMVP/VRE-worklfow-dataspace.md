@@ -12,6 +12,11 @@ This could be a request such as:
 * “Calculate drivers of change for habitats exposed to nitrogen deposition.”
 
 
+<img title="a title" alt="Alt text" src="BMD_workflow_vre_integration.drawio.png">
+<em>Based on initial diagram by Daniel Bauer SGN</em>
+
+
+
 ## **2. VRE Starts a Workflow**
 
 Based on the user’s request, the VRE triggers an workflow using the **Workflow Engine & Workflow API** (this could be same or differnet cloud resource) 
