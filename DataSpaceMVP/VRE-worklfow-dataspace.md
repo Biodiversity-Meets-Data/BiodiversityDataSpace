@@ -20,8 +20,9 @@ This could be a request such as:
 ## **2. VRE Starts a Workflow**
 
 Based on the user's request, the VRE triggers a workflow using the **Workflow Engine & Workflow API** (this could be same or different cloud resource)
-An example of workflow engine is [Argo](https://argoproj.github.io/workflows/) and workflow yaml definition can be found here in [workflow.earth](https://workflow.earth/dataset/cwr/3ad120fbd197bec61231). These yaml definitions 
-can include parameters and different artifact details that are needed to run the workflow: 
+An example for a workflow engine is [Argo](https://argoproj.github.io/workflows/) and the [Workflow RO-Crate](https://about.workflowhub.eu/Workflow-RO-Crate/) with the yaml definition of a workflow
+can be found here at [workflow.earth](https://workflow.earth/dataset/cwr/3ad120fbd197bec61231).
+These yaml definitions can include parameters and different artifact details that are needed to run the workflow:
 
 snippets: 
 ```
