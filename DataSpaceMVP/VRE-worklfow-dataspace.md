@@ -19,9 +19,10 @@ This could be a request such as:
 
 ## **2. VRE Starts a Workflow**
 
-Based on the user’s request, the VRE triggers an workflow using the **Workflow Engine & Workflow API** (this could be same or differnet cloud resource) 
-An example of workflow engine is [Argo](https://argoproj.github.io/workflows/) and workflow yaml definition can be found here in [workflow.earth](https://workflow.earth/dataset/cwr/3ad120fbd197bec61231). These yaml definitions 
-can include parameters and different artifact details that are needed to run the workflow: 
+Based on the user's request, the VRE triggers a workflow using the **Workflow Engine & Workflow API** (this could be same or different cloud resource)
+An example for a workflow engine is [Argo](https://argoproj.github.io/workflows/) and the [Workflow RO-Crate](https://about.workflowhub.eu/Workflow-RO-Crate/) with the yaml definition of a workflow
+can be found here at [workflow.earth](https://workflow.earth/dataset/cwr/3ad120fbd197bec61231).
+These yaml definitions can include parameters and different artifact details that are needed to run the workflow:
 
 snippets: 
 ```
@@ -87,7 +88,8 @@ The workflow executes on the compute layer associated with the VRE. **NOTE: chec
 
 When the workflow finishes:
 
-* it generates one or more **outputs**. These could be datasets, maps, statistics, CSVs, derived rasters, plots etc.
+* it generates a [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) containing one or more **outputs**.
+These could be datasets, maps, statistics, CSVs, derived rasters, plots etc.
 * the Workflow Engine temporarily stores these outputs and notifies the Data Space that a dataset is ready.
 
 At this stage, the output is not yet integrated into the BMD dataspace or visualisation engine.
@@ -103,7 +105,7 @@ The **BMD Data Space** receives the workflow output and processes it into two co
 Semantic metadata describing the dataset (for example species ID, site code, model type, provenance data, timestamps, etc.) is stored.  
 These metadata should for alignment around * *siteCode*, * *speciesCode*, * *habitatCode*, * workflow identifiers, * provenance statements (RO-Crate, PROV-O).
 
-Some of these metadata can also already by there via the datacubing process or prior data ingestion.  
+Some of these metadata can also already be there via the datacubing process or prior data ingestion.  
 
 
 ### **4b. Data ingestion into the cube or catalogue**
