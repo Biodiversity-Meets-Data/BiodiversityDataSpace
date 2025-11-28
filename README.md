@@ -21,9 +21,13 @@ future implementation and stakeholder collaboration.
 
 The BMD Data Space will integrate high-throughput and legacy biodiversity and environmental data into harmonised, analysis-ready data cubes. It will support access through Virtual Research Environments (VREs), a Single Access Point (SAP), APIs, and standardised metadata catalogues. Built on open lakehouse principles and aligned with the Green Deal Data Space and EOSC frameworks, the infrastructure will enable scalable, interoperable, and reusable biodiversity data services.
 
+
+
 In BMD, task 4.1 (Biodiversity Data Space with documentation) is done under WP4: Biodiversity Data Space with computing and visualisation engine
 
 Task 4.1 will design and implement a Biodiversity Data Space for the environmental and biodiversity data. 
+
+See also:  Initial biodiversity data space design with implementation plan. Biodiversity Meets Data. https://doi.org/10.5281/zenodo.17661003 
 
 A Work Package based view of the data and processes: 
 
