@@ -1,9 +1,11 @@
 # Natura 2000 FAIR Data 
 
 ## Challenge 
-The information attached to each Natura 2000 site represents imporant metadata for our Biodiversity Data Space. 
-However, this information is often scattered across different files and API endpoints, 
-lacking standardisation and ontology mapping. This is an initial effort to provide a solution that needs adoption within the BMD project.
+
+The information attached to each Natura 2000 site represents imporant metadata for Biodiversity Data Space that we are building in the BMD project. 
+This information is often scattered across different files and API endpoints, lacking standardisation and ontology mapping. This is an initial effort to provide a solution that needs adoption within the BMD project.
+
+This page from [BISE](https://biodiversity.europa.eu/data) also has links to the different queries 
 
 Here's a snippet of data about a site in Austria, obtained from the [EEA Data Explorer](https://discodata.eea.europa.eu/index.html#) where you can make SQL queries against the database:
 
@@ -77,47 +79,117 @@ The data and its documentation live in separate places which is ok but they are 
 
 There are also INSPIRE specific xml and gml files which is found in the EEA site but also in national portals like https://api.pdok.nl/rvo/natura2000-geharmoniseerd/ogc/v1/collections/protectedsite
 
-To make this data FAIR, we can do a few things. Use established ontologies: 
+To address this, we are working towards JSON-LD representation for each site. This provides:
 
-- **Schema.org** for general structure and properties 
-- **Darwin Core** for species and measurements  
-- **DCAT** for dataset metadata
-- **EIOnet vocabularies** for environmental concepts
-- **QUDT** for measurements and units
+- A single, semantically rich digital object describing the site.
+- Clear links to species, habitats, and datasets using identifiers (EUNIS, GBIF as needed).
+- API endpoints for programmatic access to metadata, species lists, and habitats.
+- Alignment with Data Space concepts: Dataset, DataService, Offering, and Catalog.
 
-## Example Transformation
+
+The EEA SQL API acts as the source for species and habitat data. 
+
+We also want to align this with [Data Space terms: DSSC blueprint v.2](https://dssc.eu/space/BVE2/1071256347/Data,+Services,+and+Offerings+Descriptions). 
+There is also IDSA [data space protocol](https://eclipse-dataspace-protocol-base.github.io/DataspaceProtocol/2025-1-err1/) that provides JSON-LD context. 
+
+We can imagine an application from the BMD data space that can act as a "Consumer" or "Connector", querying the EEA API as the Provider. Each site itself is a Dataset/Offering/Data Product with attached distributions and services.
+
+
+## Example (needs further work) 
 
 ```json
+
 {
   "@context": {
-    "population_type": "natura:populationType",
-    "p": "natura:populationType/Permanent",
-    "i": "http://qudt.org/vocab/unit/Individual"
+    "@version": 1.1,
+    "@protected": true,
+    "dct": "http://purl.org/dc/terms/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "dspace": "https://w3id.org/dspace/2025/1/"
   },
   "@type": "dcat:Dataset",
-  "about": {
-    "@type": "ProtectedSite",
-    "siteCode": "AT1101112",
-    "name": "Nickelsdorfer Haidel",
-    "containsPlace": [
-      {
-        "@type": "natura:AnnexIHabitat",
-        "habitatID": "ANNEX1_6240",
-        "supports": {
-          "@type": "dwc:Organism",
-          "taxon": {
-            "@type": "dwc:Taxon",
-            "scientificName": "Artemisia pancicii"
-          },
-          "natura:populationEstimate": {
-            "qudt:lowerBound": 20,
-            "qudt:upperBound": 100,
-            "qudt:unit": "http://qudt.org/vocab/unit/Individual"
+  "@id": "https://biodiversity.europa.eu/sites/natura2000/AT1101112",
+  "dct:identifier": "AT1101112",
+  "dct:title": "Nickelsdorfer Haidel",
+  "dct:description": "Der Artenreichtum des Silikattrockenrasens macht diesen Standort zu einem wichtigen Element der pannonischen Lebensräume...",
+  "dct:spatial": "Austria",
+  "dct:temporal": "1998",
+  "dct:subject": [
+    {
+      "@id": "https://biodiversity.europa.eu/habitats/ANNEX1_6240",
+      "@type": "dcat:Dataset",
+      "dct:title": "Sub-Pannonic steppic grasslands",
+      "dct:identifier": "6240"
+    },
+    {
+      "@id": "https://biodiversity.europa.eu/habitats/ANNEX1_6510",
+      "@type": "dcat:Dataset",
+      "dct:title": "Lowland hay meadows (Alopecurus pratensis, Sanguisorba officinalis)",
+      "dct:identifier": "6510"
+    }
+  ],
+  "dcat:distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "dct:format": "application/json",
+      "dcat:accessService": {
+        "@type": "dcat:DataService",
+        "@id": "https://bmd.dataspace/api/site/info/AT1101112",
+        "dcat:endpointURL": "https://bmd.dataspace/api/site/info/AT1101112",
+        "dcat:endpointDescription": "API endpoint returning general site metadata"
+      }
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dct:format": "application/json",
+      "dcat:accessService": {
+        "@type": "dcat:DataService",
+        "@id": "https://bmd.dataspace/api/site/habitats/AT1101112",
+        "dcat:endpointURL": "https://bmd.dataspace/api/site/habitats/AT1101112",
+        "dcat:endpointDescription": "API endpoint returning habitat list"
+      }
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dct:format": "application/json",
+      "dcat:accessService": {
+        "@type": "dcat:DataService",
+        "@id": "https://bmd.dataspace/api/site/species/AT1101112",
+        "dcat:endpointURL": "https://bmd.dataspace/api/site/species/AT1101112",
+        "dcat:endpointDescription": "API endpoint returning species list"
+      }
+    }
+  ],
+  "dcat:relatedResource": [
+    {
+      "@type": "dcat:Dataset",
+      "@id": "https://biodiversity.europa.eu/habitats/ANNEX1_6240",
+      "dct:title": "Sub-Pannonic steppic grasslands",
+      "dct:identifier": "6240",
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dct:format": "application/json",
+          "dcat:accessService": {
+            "@type": "dcat:DataService",
+            "@id": "https://bmd.dataspace/api/habitat/6240",
+            "dcat:endpointURL": "https://bmd.dataspace/api/habitat/6240",
+            "dcat:endpointDescription": "API endpoint for habitat metadata"
           }
         }
-      }
-    ]
-  }
+      ]
+    }
+  ],
+  "dct:contributor": [
+    {
+      "@type": "dct:Agent",
+      "dct:title": "Amt d. Burgenländischen Landesregierung, Abt. 4 Agrarwesen, Natur- und Klimaschutz",
+      "dct:identifier": "mailto:post.a4@bgld.gv.at",
+      "dct:description": "Management body for the site",
+      "dct:location": "Europaplatz 1, A-7000 Eisenstadt"
+    }
+  ]
 }
 ```
 
@@ -127,17 +199,6 @@ Our JSON-LD serialisation needs to incorporates these as well.
 A simple JSON example demonstrating FAIR is here [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/bmd-site-example.json).
 A more elaborate JSON-LD example: is [here](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/AT1101112_FAIR.jsonld)
 
-We can use this example to create a template (similar to RO-Crate template) for site description and attached datasets or attached species/habitats. There will be also a need to map the species ids. For instance, 
-AT1101112 site has species eunis_id 154421 (https://eunis.eea.europa.eu/species/154421). This maps to GBIF https://www.gbif.org/species/3121387 but hidden in another table. 
-```
-{
-        "code_site": "AT1101112",
-        "id_eunis": 154421,
-        "code_2000": "1917",
-        "species_name": "Artemisia pancicii",
-        "species_group_name": "Flowering Plants",
-        "picture_url": ""
-    },
-```
+
 
 JSON-LD / RO-Crate templates could make this a bit more structure and FAIR. 
