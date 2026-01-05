@@ -63,14 +63,15 @@ Control plane: trust, identity, authorization, policy, discovery driven by metad
 Metadata lives primarily in the control plane, but influences behavior in the data plane.
 
 
+In GDDS language:
 
-## Example 
+GBIF = Data Provider, Service Provider, and partial Governance node
+Naturalis = Service Provider and Governance node
+Data Cubes = Data Products
+VREs = Value-added processing services and tools 
+BMD Data Space = federated domain data space connected to Green Deal / EOSC 
 
-| Role              | Organisation | Contribution |
-| :---------------- | :------: | ----: |
-|Data Providers      |   EEA   | |
-|                   |  GBIF   |  |
-|                   | CHELSA | |
-| Service Provider| BMD consortium | Cloud infrastructure, data integration, API services |
-| Data Consumers | BMD users | |
-|Catalog| GeoNetwork| Metadata management and discovery|
+
+Green Deal Information Model (GDIM)-aligned metadata. rich enough to support interoperability, provenance, governance, and machine actionability in a Green Deal Data Space context, and
+
+Open Data Product Standard (ODPS)-style YAML — a growing open standard for defining data products (includes input/output ports, contracts, governance, and custom metadata)
