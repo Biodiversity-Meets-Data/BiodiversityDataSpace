@@ -1,50 +1,66 @@
+In order to faciliate the work of the First version of data space delivered by the BMD project, this document provides summary and exmaple based on 
+
+- Data Spaces Blueprint version 2.0 https://dssc.eu/space/bv15e/766061169/Data+Spaces+Blueprint+v1.5+-+Home
+- Green Deal data space concepts deliverable from All Data 4 Green Deal AD4GD D4.3 Connecting the Green Deal Data Space (final). Zenodo.
+https://doi.org/10.5281/zenodo.17200728
+
+https://zenodo.org/records/17200728 (AD4GD D4.3 Connecting the Green Deal Data Space (final)) 
+
 According to the Data Spaces Support Centre (DSSC) and International Data Spaces Association (IDSA), data spaces consist of modular building blocks that can be implemented and combined.
 
-## Core Participants (Roles)
 
-Every data space has these key roles:
 
-- 1 Data Provider
+# Building blocks for MVP 
 
-Organizations that make data available to the data space.
 
-In BMD (a few examples): 
+## Participants
+
+GDDS blueprint and concept clarifies that metadata supports different views depending on the participant:
+
+- Providers can describe availability, terms, lineage
+- Consumers understand appropriateness, licenses, risks
+- Governance actors understand compliance and accountability
+- governance arrangements are captured and expressed through metadata and policy models
+
+Few examples: 
 
 EEA - Provides Natura 2000 protected area data
 GBIF - Provides species occurrence records
 CHELSA - Provides climate data layers
 
-- 2 Data Consumer
+## Data Products 
 
-Organizations or individuals that use data from the data space.
+"data cubes" using GBIF and CHELSA data, derived SDMs are all data products.
 
-BMD stakeholders. 
+Metadata must capture: Product identity (PID, version), offernings /value provided, Dependencies (what inputs were used), Processing steps, Quality indicators
+Responsible organisation, Usage constraints
 
-- 3 Service Provider
+The idea is ot support traceability of data products, enabling reproducibility, accountability, and reuse across contexts. 
 
-Organisations that operate infrastructure and provide technical services.
+## Services 
 
-In BMD: The organisations in the consortium that operates cloud storage, connectors, APIs, and catalog services
+In GDDS, services (for example these could be APIs, computation, AI pipelines, model workflows) are also described through metadata so that they can be:
+
+discovered, composed, governed and monitored
+
+Services and workflows are represented alongside datasets enabling composibility and automation
+
+## Governance Frameworks
+
+GDDS metadata explicitly encodes governance concepts:
+
+- who may access what
+- under what conditions
+- contractual terms / license
+- obligations of reuse
+- ethical or legal  constraints (FAIR and CARE) 
+- logging and audit
 
 
-- 4  Data Space Authority (optional)
-  
-Organisation that governs the data space and maintains rules.
+Data plane: actual movement/query of data
+Control plane: trust, identity, authorization, policy, discovery driven by metadata
 
-- 5  Intermediaries
-
-Additional actors that facilitate data exchange (some of these can be maintained by same organisations that are also provider or consumers). 
- - Brokers/Catalogs - Make data discoverable (e.g., GeoNetwork)
-- Identity Providers - Manage authentication and authorization
-
-## Technical Building Blocks
-
-Connectors: Software components that enable secure data exchange between participants.
-
-BMD operates a connector that pulls data from EEA, GBIF, CHELSA for instance. 
-
-Transforms and integrates data exposes unified APIs
-Enforces attribution and license requirements
+Metadata lives primarily in the control plane, but influences behavior in the data plane.
 
 
 
