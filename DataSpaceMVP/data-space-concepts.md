@@ -11,7 +11,7 @@ This document draws on:
 * Green Deal Data Space (GDDS) concepts from AD4GD D1.4 — [Zenodo](https://doi.org/10.5281/zenodo.17200217)
 * AD4GD D4.3 — Connecting the Green Deal Data Space — [Zenodo](https://doi.org/10.5281/zenodo.17200728)
 
-In addition, documentation and protocols are emerging from the International Data Spaces Association (IDSA):[https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol](https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol)
+In addition, documentation and protocols are emerging from the International Data Spaces Association [(IDSA)](https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol):
 
 Many of ideas from IDSA are reflected and reused in the reports mentioned above.
 
