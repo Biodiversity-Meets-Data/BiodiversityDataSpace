@@ -70,13 +70,9 @@ Organisations in a data space take on specific roles that determine their  respo
 
 **Note**: Organisations can have multiple roles simultaneously.
 
-
-
-
 ---
 
 ### Data Products
-
 
 
 In BMD, "data products" refers to curated, documented datasets with clear provenance and purpose. 
@@ -102,7 +98,6 @@ In BMD, "data products" refers to curated, documented datasets with clear proven
    - Processing: Hierarchical SDM workflow
    - Output: Distribution maps with uncertainty estimates
    - Metadata: Model parameters, validation metrics, projection scenarios
-
 
 ---
 
@@ -132,7 +127,6 @@ Services are capabilities offered within the data space. In BMD, services are es
    - Result publication back to data space
 
 Services can be described using standardized metadata (DCAT, OpenAPI) allowing both humans and machines to find and use them.
-
 
 
 ---
@@ -212,14 +206,9 @@ All outputs should be registered also as **data products** with proper metadata.
 ### JSON example — Participants / Provider / Dataset (IDSA-inspired + GDDS concepts)
 
 This is intentionally simple and conceptual for MVP discussions.
+Also see emerging (open data product standard)[https://bitol-io.github.io/open-data-product-standard/latest/#example_1]
 
-It captures:
 
-
-```json
-### Example: Data Product Metadata Structure
-
-BMD uses standard vocabularies (DCAT, Dublin Core) to describe data products:
 ```json
 {
   "@type": "dcat:Dataset",
