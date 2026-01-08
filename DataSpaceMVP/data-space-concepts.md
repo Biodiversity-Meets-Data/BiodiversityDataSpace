@@ -1,4 +1,6 @@
-# Purpose of this document
+# Data Space Concepts and Biodiversity Meets Data 
+
+## Purpose of this document
 
 In order to support the first iteration of the BMD data space (a minimal viable product), this document provides a concise overview of concepts coming from different initiatives working on European data spaces. Although there is no single definition or universally agreed implementation of a “data space”, there is emerging consensus around core ideas, roles, and building blocks.
 
@@ -17,16 +19,22 @@ Many of ideas from IDSA are reflected and reused in the reports mentioned above.
 
 ## What is a Data Space?
 
-The DSSC glossary (adopted from the CEN Workshop Agreement on Trusted Data Transactions) describes a data space as:
+A data space is an infrastructure that enables organisations to share and exchange  data in a trusted, controlled way. Unlike traditional data lakes where all data is  pooled in one place, data spaces allow data to remain with its provider while being discoverable and accessible through common standards and goverance framework.
 
-> **Interoperable framework, based on common governance principles, standards, practices and enabling services, that enables trusted data transactions between participants.**
+The DSSC glossary defines it as:
 
-Another shared principle is that data spaces are **modular** that means they are composed of building blocks that can be implemented independently and combined over time.
+> "Interoperable framework, based on common governance principles, standards, 
+> practices and enabling services, that enables trusted data transactions 
+> between participants."
 
-Another current initiative closely aligned with the Green Deal vision is SAGE:
+Key principles for BMD:
+- **Federated**: Data stays with providers (GBIF, EEA, CHELSA)
+- **Standards-based**: Common APIs and metadata schemas enable interoperability
+- **Governed**: Clear rules about who can access what, under which conditions
+- **Modular**: Built from components that can be implemented incrementally
 
-> [https://www.greendealdata.eu/](https://www.greendealdata.eu/)
-> “The SAGE (Sustainable Green Europe Data Space) project will develop a federated, secure, and interoperable data space to support the European Green Deal…”
+
+Another current initiative closely aligned with the Green Deal vision is SAGE [https://www.greendealdata.eu/](https://www.greendealdata.eu/)
 
 ---
 
@@ -40,81 +48,122 @@ For BMD, we focus on a few essential concepts that support the first milestone a
 
 ### Participants
 
-Participants in a data space can take on different roles.
-It is therefore important to record **who they are** and **what they do** via metadata.
+Organisations in a data space take on specific roles that determine their  responsibilities and what they can do. 
 
-Based on DSSC guidelines, the main roles are:
+**Key roles envisioned in BMD:**
 
-* **Data Provider** — entity providing data to the ecosystem
-* **Data Consumer** — entity using or receiving data
-* **Data Space Governance Authority** — entity defining and enforcing data space rules
-* **Service Provider** — entity offering services (catalogues, APIs, computation, etc.)
+**Data Provider** — Organisation making data available
+- Example: EEA provides Natura 2000 data 
+- Responsibility: Maintain data quality, updating data, declare licensing terms
 
-Examples in the BMD context
+**Data Consumer** — Entities using data
+- Example: A user using the BMD VRE for SDM analysis
+- Responsibility: Comply with usage terms, cite sources
 
-* **EEA** — provides Natura 2000 protected area data
-* **GBIF** — provides species occurrence records
-* **CHELSA** — provides climate predictor layers
+**Service Provider** — Organisation offering services
+- Example: LifeWatch ERIC providing the visualization engine. Naturalis providing the data space. 
+- Responsibility: Ensure service availability and performance
 
-In practice: (a few examples, not an exhaustive list)
+**Data Space Governance Authority** — Organisation setting policies
+- Example: Naturalis coordinating BMD data space rules
+- Responsibility: Define access policies, 
 
-* GBIF acts as **Data Provider**, **Service Provider**, and participate in governance discussions
-* Naturalis acts as **Service Provider** and **Data Space Governance Authority**
-* LifeWatch ERIC acts as **Service Provider**
+**Note**: Organisations can have multiple roles simultaneously.
+
+
+
 
 ---
 
 ### Data Products
 
-Data products are not just “datasets”. They are packaged, documented resources with purpose and governance.
 
-Examples in BMD:
 
-* Data cubes using GBIF and CHELSA data 
-* Derived SDM results
-* Aggregated indicators per region or protected area
+In BMD, "data products" refers to curated, documented datasets with clear provenance and purpose. 
 
-Metadata needs to capture:
+ A data product includes not just the data, but:
+- Persistent identifier (PID: DOI or Handle)
+- Comprehensive metadata (what, who, when, how)
+- Processing lineage (source datasets → transformations → output)
+- If possible: Quality indicators and known limitations
+- Licensing and usage restrictions
+- Dependencies on other data products or services
 
-* Product identity (PID, version)
-* Value proposition (what the product enables)
-* Dependencies (input datasets and services)
-* Processing and transformation steps
-* Quality indicators and uncertainty
-* Responsible organisation
-* Licensing and usage constraints
+**BMD Examples:**
 
-Goal is to enable traceability, reproducibility, accountability, and responsible reuse.
+1. **GBIF-CHELSA Occurrence Cube** 
+   - Input: GBIF occurrence records + CHELSA climate layers
+   - Processing: Spatiotemporal harmonization at 1km² resolution
+   - Output: Multi-dimensional datacube stored
+   - Metadata: Includes species list, temporal range, climate variables
+   
+2. **SDM Results** (VRE)
+   - Input: Occurrence cube + Natura 2000 boundaries
+   - Processing: Hierarchical SDM workflow
+   - Output: Distribution maps with uncertainty estimates
+   - Metadata: Model parameters, validation metrics, projection scenarios
+
 
 ---
 
 ### Services
 
-In data spaces, services are important components. They can be:
+Services are capabilities offered within the data space. In BMD, services are essential for processing datasets, data cubes and delivering results to users.
 
-* APIs
-* computational workflows
-* AI pipelines
-* modeling environments (e.g., VREs)
+**BMD Service Types Examples:**
 
-They are also described through metadata.
+1. **Data Access Services** (T4.1 - Data Integration Layer)
+   - REST APIs for querying data cubes
+   - Spatiotemporal filtering and subsetting
+   - Format conversion (GeoJSON, NetCDF, Zarr etc )
 
-Datasets, services, and workflows can be also described **together**, enabling automation and interoperability.
+2. **Computational Services** (T4.2 - Cloud Computing for VREs)
+   - On-demand compute resource provisioning
+   - Workflow orchestration 
+
+3. **Visualization Services** (T4.3 - Data/Map Visualization Engine)
+   - Web-GIS for exploring data cubes
+   - Interactive map layers (WMS, WMTS)
+   - Chart generation 
+
+4. **Workflow Services** (WP5, supported by T4.1 Data Processing Layer)
+   - FAIR workflow execution
+   - Provenance capture via RO-Crate
+   - Result publication back to data space
+
+Services can be described using standardized metadata (DCAT, OpenAPI) allowing both humans and machines to find and use them.
+
+
 
 ---
 
 ### Governance Frameworks
 
-GDDS concepts places governance inside metadata.
+Governance determines the "rules of engagement" for the data space: who can  access what, under which conditions, and with what obligations.
 
-Key concepts include:
+**BMD Governance Components:**
 
-* who can access which resources
-* under what conditions
-* contracts and licenses
-* obligations for reuse
-* legal and ethical constraints (FAIR, CARE, etc.)
-* logging and auditing requirements
+**1. Access Control** 
+- If needed: User authentication via institutional login
+- Role-based access (public data vs restricted species data)
+- API keys for programmatic access
+
+**2. Usage Policies** 
+- Data licensing (CC-BY, CC0, custom restrictions)
+- Citation requirements
+- Allowed/prohibited use cases
+- Sensitive species data handling 
+
+**3. Data Agreements** (ODRL policies/open data contracts in metadata)
+- Machine-readable data contracts
+- Service Level Agreements
+
+**4. Integration Governance** 
+- Alignment with GDDS governance framework and EOSC policies 
+
+**Practical Example**: 
+A user wants to use occurrence data for an invasive species but these are listed as 
+protected. The data space can check if user is authenticated and authorized. and if purpose matches allowed uses ("research and policy analysis"). 
 
 Conceptually, there are two "planes": 
 
@@ -166,67 +215,26 @@ This is intentionally simple and conceptual for MVP discussions.
 
 It captures:
 
-* participant identity
-* role
-* dataset (as data product)
-* policy / governance hints
-* provenance references
 
 ```json
-{
-  "@context": {
-    "dcat": "https://www.w3.org/ns/dcat#",
-    "dct": "http://purl.org/dc/terms/",
-    "odrl": "http://www.w3.org/ns/odrl/2/",
-    "dspace": "https://w3id.org/dspace/v1/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
-  },
-  "@type": "dcat:Catalog",
-  "dspace:participantId": "urn:participant:naturalis",  
-  "dcat:dataset": [
-    {
-      "@type": "dcat:Dataset",
-      "@id": "urn:dataset:bmd:invasive-occurrence-cube-v1",
-      "dct:title": "BMD Invasive Species Occurrence Data Cube",
-      "dct:description": "Harmonized occurrence and predictor cube for EU invasive species modeling",
-      "dct:publisher": {
-        "name": "Naturalis Biodiversity Center",
-        "id": "urn:participant:naturalis"
-      },
-      "odrl:hasPolicy": [
-        {
-          "@type": "odrl:Offer",
-          "odrl:permission": [
-            {
-              "odrl:action": "odrl:read",
-              "odrl:assignee": "urn:participant:*"
-            }
-          ],
-          "odrl:constraint": [
-            {
-              "odrl:operator": "odrl:eq",
-              "odrl:purpose": "research and policy analysis"
-            }
-          ]
-        }
-      ],
-      "dcat:distribution": [
-        {
-          "@type": "dcat:Distribution",
-          "dcat:accessURL": "https://dataspace.bmd.org/cubes/invasive-occurrence",
-          "dcat:mediaType": "application/json",
-          "dcat:dataService": {
-            "@type": "dcat:DataService",
-            "dcat:endpointURL": "https://connector.bmd.org/ids/api",
-            "dspace:dataServiceType": "dspace:connector"
-          }
-        }
-      ],
-      "dct:issued": "2026-01-10T00:00:00Z",
-      "dct:modified": "2026-01-10T00:00:00Z"
-    }
-  ]
-}
+### Example: Data Product Metadata Structure
 
+BMD uses standard vocabularies (DCAT, Dublin Core) to describe data products:
+```json
+{
+  "@type": "dcat:Dataset",
+  "@id": "https://bmd.eu/datasets/invasive-occurrence-cube-v1",
+  "title": "BMD Invasive Species Occurrence Data Cube",
+  "publisher": "Naturalis Biodiversity Center",
+  "description": "Occurrence and predictor cube...",
+  "license": "CC-BY-4.0",
+  "accessURL": "https://api.bmd.eu/cubes/invasive-occurrence",
+  "issued": "2026-01-10",
+  "spatial": "European Union",
+  "temporal": "2000-2025"
+}
 ```
 
+*Full technical schemas will be developed during T4.1 implementation based on GDDS recommendations.*
+
+```
