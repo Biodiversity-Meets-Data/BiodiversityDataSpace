@@ -28,9 +28,55 @@ A domain-level data space identity, aligned with:
 
 - EOSC principles
 
-API examples (illustrative)
+## API examples (illustrative)
 
-Endpoints are evolving, but current examples include:
+Endpoints are evolving, but current examples include: 
+
+DataSpace description: 
+
+
+/version 
+```
+{
+  "dataSpace": {
+    "id": "urn:dataspace:biodiversity",
+    "name": "Biodiversity Data Space",
+    "domain": "biodiversity",
+    "description": "The Biodiversity Meets Data (BMD) project is creating a data space using cloud-native open infrastructure to support biodiversity monitoring, conservation, and policy across terrestrial, freshwater, and marine environments.",
+    "governanceRole": "DomainDataSpace",
+    "alignment": [
+      "European Green Deal Data Space",
+      "EOSC"
+    ]
+  },
+  "projectContext": {
+    "projectName": "Biodiversity Meets Data",
+    "fundingProgramme": "Horizon Europe",
+    "cordis": "https://doi.org/10.3030/101181294",
+    "roleInDataSpace": "Initial implementation and pilot use cases"
+  },
+  "version": {
+    "api": "0.0.6",
+    "commit": "d29b3c9",
+    "branch": "develop",
+    "buildDate": "2026-01-22 08:22:46 UTC"
+  },
+  "service": {
+    "name": "Biodiversity Data Space API",
+    "type": "DataSpaceGateway",
+    "capabilities": [
+      "data-product-discovery",
+      "metadata-exchange",
+      "provenance-tracking"
+    ]
+  },
+  "implementation": {
+    "operator": "Naturalis Biodiversity Center"
+  }
+}
+```
+
+
 
 Natura 2000 site metadata
 /sites/{siteId}/metadata
@@ -95,6 +141,10 @@ provenance:
   }
 }
 ```
+
+RO-Crate: 
+
+
 
 The implementation is operated by Naturalis Biodiversity Center. 
 
