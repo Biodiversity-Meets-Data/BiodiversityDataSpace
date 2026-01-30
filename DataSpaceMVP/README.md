@@ -1,9 +1,9 @@
 # Biodiversity Data Space – First Implementation (v0.5)
 
 This repository documents the first working version of the Biodiversity Data Space, developed within the Biodiversity Meets Data (BMD) project.
-It represents an implementation of a domain data space gateway, following the architectural design described in the design specification. See [Zenodo record](https://zenodo.org/records/17661003).
+It represents an implementation of a domain data space gateway, following the architectural design described in the [design specification](https://zenodo.org/records/17661003) (a previous project milestone). 
 
-This version focuses on stable infrastructure with DevOps and CI/CD components and basic API functionalities with data space concept alignment. 
+This version of the Data Space focuses on stable infrastructure with DevOps and CI/CD components and basic API functionalities with data space concept alignment. 
 
 
 ## What this version provides
