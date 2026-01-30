@@ -142,9 +142,6 @@ provenance:
 }
 ```
 
-RO-Crate: 
+RO-Crate: API that supports the ingestion, storage,  and exposure of the RO-Crates produced by the VREs. See the [current discussions](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/DataSpaceMVP/VRE-worklfow-dataspace.md) on this topic. 
 
-
-
-The implementation is operated by Naturalis Biodiversity Center. 
-
+The Biodiversity Data Space implementation is operated by Naturalis Biodiversity Center. 
