@@ -83,3 +83,46 @@ References:
 
 Data Space Blueprint: https://dssc.eu/space/BVE2/1071251457/Data+Spaces+Blueprint+v2.0+-+Home
 Open Lakehouse Architecture: https://moderndata101.substack.com/p/lakehouse-20-the-open-system-that
+
+## Biodiversity Dataspace API
+
+The Biodiversity Dataspace API is the programmatic gateway to the WP4 Biodiversity Data Space and exposes machine-accessible services for metadata discovery, provenance tracking, and spatial data access. It is operated by Naturalis Biodiversity Center and aligned with the Green Deal Data Space (GDDS) and EOSC interoperability principles. The API provides structured access to research outputs (RO-Crates) produced within WP5 Virtual Research Environments (VREs), as well as harmonised site-level biodiversity information. As of MS20, responsibility for controlling or orchestrating the WP3 Cubing Engine is no longer part of the Dataspace API scope; the API focuses strictly on exposure, discovery, and integration of data products and metadata within the Data Space.
+
+The API is publicly reachable at:  
+https://dataspace.bmdproject.eu/
+
+Version and build information can be inspected at:  
+https://dataspace.bmdproject.eu/version
+
+Interactive OpenAPI documentation is available via:  
+https://dataspace.bmdproject.eu/scalar
+
+### Core Endpoints (MS20)
+
+**RO-Crate discovery and inspection**
+- List available RO-Crates:  
+  https://dataspace.bmdproject.eu/rocrates
+- Retrieve a specific RO-Crate by identifier (example UUID):  
+  https://dataspace.bmdproject.eu/rocrates/74901d31-211a-304b-8df3-547298b7bdb5
+- Retrieve a summary view of a specific RO-Crate:  
+  https://dataspace.bmdproject.eu/rocrates/74901d31-211a-304b-8df3-547298b7bdb5/summary
+
+These endpoints enable provenance tracking and structured access to workflow definitions and research artefacts generated in the VREs.
+
+**Natura 2000 site metadata integration**
+- Aggregated site metadata:  
+  https://dataspace.bmdproject.eu/sites/DE5730301/metadata
+- Site metadata via BISE:  
+  https://dataspace.bmdproject.eu/sites/DE5730301/metadata/BISE
+- Site metadata via EUNIS:  
+  https://dataspace.bmdproject.eu/sites/DE5730301/metadata/EUNIS
+
+These endpoints federate authoritative European biodiversity metadata sources into a unified, programmatic interface.
+
+**Spatial data access**
+- Site geometry as GeoJSON (reprojected to EPSG:4326):  
+  https://dataspace.bmdproject.eu/sites/DE5730301/geojson
+
+This endpoint provides standards-compliant GeoJSON FeatureCollections suitable for integration into GIS clients, VRE workflows, and web-based visualisation tools.
+
+Together, these services demonstrate the operational role of WP4 in MS20: exposing FAIR-aligned biodiversity data products and metadata through stable, versioned, and inspectable web interfaces, ready for integration by WP5 VREs and WP6 Single Access Point services.
