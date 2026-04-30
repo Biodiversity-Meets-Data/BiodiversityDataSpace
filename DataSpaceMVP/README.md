@@ -30,6 +30,16 @@ A domain-level data space identity, aligned with:
 
 ## API examples (illustrative)
 
+A note regarding why BMD needs such APIs. The European Environment Agency (EEA) publishes [Natura 2000 data](https://doi.org/10.2909/91357f39-7866-41ce-b447-43905c364ec8) primarily via spatial services, including ESRI ArcGIS REST services and OGC-compliant interfaces. At national level, similar access is provided through OGC API Features endpoints, for example via [PDOK in the Netherlands](https://api.pdok.nl/rvo/nationaal-beschermde-gebieden-cdda/ogc/v1). These services are well-suited for geospatial data access (e.g. map layers, feature queries, shapefiles, GeoPackages), but they do not provide a dedicated REST interface for retrieving consolidated, site-level metadata via a simple, stable endpoint. The BMD Data Space API therefore implements a purpose-built REST API that can expose harmonised, site-level Natura 2000 metadata in a single JSON response. It can also provide different types of spatial, legal, descriptive, and administrative metadata into a consistent schema. The idea here is to abstract away GIS-specific access patterns, enabling use by non-GIS systems and services.
+
+From an architectural perspective, the design of the site metadata API aligns with [Common European data space](https://digital-strategy.ec.europa.eu/en/policies/data-spaces) concepts and related initiatives such as the International Data Spaces Association [(IDSA)](https://internationaldataspaces.org/idsa-data-space-connector-report/) and the Data Spaces Support Centre [(DSSC)](https://dssc.eu/space/BVE2/1071251613/Introduction+-+Key+Concepts+of+Data+Spaces). 
+
+In particular, it is worth noting that IDSA positions **Data Space Connectors** as components that expose data resources and metadata through standardised interfaces, abstracting underlying systems. In this context, the **BMD Dataspace API provides a stable, REST-based access layer for Natura 2000 site-level metadata**, decoupling consumers from underlying EEA databases, GIS and OGC services. 
+
+The BMD Data Space API can be understood as a data space service exposing a metadata-rich data product. DSSC emphasises discoverability, shared semantics, and standard interfaces as core building blocks of data spaces. By consolidating and harmonising Natura 2000 site metadata into a well-defined API schema, the service supports these principles and enables integration with catalogues, VREs, and workflow engines. The API therefore complements existing EEA and national OGC services providing API-first interoperability and metadata-driven data sharing.
+
+
+
 Endpoints are evolving, but current examples include: 
 
 DataSpace description: 
@@ -141,6 +151,8 @@ provenance:
   }
 }
 ```
+
+This API / access mechanisms can extend to habitat type information as well. See [summary of habitat identifier metadata](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/metadata-issues/Habitat-Annex-Mappaing.md). 
 
 RO-Crate: API that supports the ingestion, storage,  and exposure of the RO-Crates produced by the VREs. See the [current discussions](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/DataSpaceMVP/VRE-worklfow-dataspace.md) on this topic. 
 
