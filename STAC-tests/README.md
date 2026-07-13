@@ -4,6 +4,8 @@ These tests are work in progress. Here are our current ideas and summary.
 
 From https://www.ogc.org/standards/stac/
 
+![image](stac-simplified-model.png)
+
 "The SpatioTemporal Asset Catalog (STAC) family of specifications aim to standardize the way geospatial asset metadata is structured and queried. A “spatiotemporal asset” is any file that represents information about the Earth at a certain place and time."
 
 In a general sense STAC can be used to describe any digital object and focus on: where it is, what area and time it covers, and how to use it regardless of what format the data itself is stored in.
