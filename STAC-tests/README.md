@@ -118,14 +118,17 @@ snippet
 
 ### Some external examples/references: 
 
-COG for raster imagery (range-read friendly, 368x faster than
-a full download per
+These ideas are coming from cloud native and cloud optimised implementation where STAC plays a significant role. 
+
+***Cloud-native formats solve three problems: inefficient full-file downloads, analytics platform integration gaps, and data discovery challenges. Traditional formats like Shapefile and GeoTIFF require downloading entire files to access a small region. COG, GeoParquet, and STAC enable HTTP range requests, columnar analytics, and searchable metadata. Before diving into solutions, let's be precise about what we're solving.**
+
+See:
 [Axis Spatial's benchmark](https://www.axisspatial.com/blog/cloud-native-formats), Zarr for aligned multi-dimensional cubes
 (chunked N-d arrays with no catalog of its own —
 [Element 84](https://element84.com/software-engineering/zarr-stac/) has
 a good writeup), GeoParquet for vector/tabular data, NetCDF also has its own "catalog". 
 
-But the main point STAC doesn't care which of these internal catalogs are used. 
+But the main point is: STAC doesn't care which of these internal catalogs are used. 
 
 
 The
