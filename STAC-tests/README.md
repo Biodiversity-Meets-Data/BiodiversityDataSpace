@@ -15,9 +15,9 @@ In a general sense STAC can be used to describe any digital object and focus on:
 
 
 A filename like `chelsa_bio_10km_final_v2.zarr` means something to
-whoever named it or familiar with the datasets. From a machine readibility and FAIR perspective this is not the best practices. We are using S3 buckets but S3 can make this worse. 
+whoever named it or familiar with the datasets. From a machine readibility and FAIR perspective this is not a best practice. 
 
-There is no real folders, no browse option and no way to ask questions like: 
+Using s3 helps but there is no real folders, no browse option and no way to ask questions like: 
 
 "which files/datasets cover x location and y date range" 
 
