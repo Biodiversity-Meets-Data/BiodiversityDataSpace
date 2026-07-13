@@ -4,12 +4,11 @@ These tests are work in progress. Here are our current ideas and summary.
 
 From https://www.ogc.org/standards/stac/
 
-![image](stac-simplified-model.png)
-
 "The SpatioTemporal Asset Catalog (STAC) family of specifications aim to standardize the way geospatial asset metadata is structured and queried. A “spatiotemporal asset” is any file that represents information about the Earth at a certain place and time."
 
 In a general sense STAC can be used to describe any digital object and focus on: where it is, what area and time it covers, and how to use it regardless of what format the data itself is stored in.
 
+<img src="stac-simplified-model.png" width="600">
 
 
 ## Why not just S3 with a good folder name?
@@ -120,15 +119,16 @@ snippet
 
 These ideas are coming from cloud native and cloud optimised implementation where STAC plays a significant role. 
 
-***Cloud-native formats solve three problems: inefficient full-file downloads, analytics platform integration gaps, and data discovery challenges. Traditional formats like Shapefile and GeoTIFF require downloading entire files to access a small region. COG, GeoParquet, and STAC enable HTTP range requests, columnar analytics, and searchable metadata. Before diving into solutions, let's be precise about what we're solving.**
+***Cloud-native formats solve three problems: inefficient full-file downloads, analytics platform integration gaps, and data discovery challenges. Traditional formats like Shapefile and GeoTIFF require downloading entire files to access a small region. COG, GeoParquet, and STAC enable HTTP range requests, columnar analytics, and searchable metadata.**
 
 See:
-[Axis Spatial's benchmark](https://www.axisspatial.com/blog/cloud-native-formats), Zarr for aligned multi-dimensional cubes
-(chunked N-d arrays with no catalog of its own —
-[Element 84](https://element84.com/software-engineering/zarr-stac/) has
+- A pragmatic guide to COG, GeoParquet, and STAC. When they work, when they don't, and how to evaluate whether migration makes sense for your organisation.
+[Axis Spatial's benchmark](https://www.axisspatial.com/blog/cloud-native-formats), 
+
+- [Element 84](https://element84.com/software-engineering/zarr-stac/) has
 a good writeup), GeoParquet for vector/tabular data, NetCDF also has its own "catalog". 
 
-But the main point is: STAC doesn't care which of these internal catalogs are used. 
+The main point is: STAC doesn't care which of these internal catalogs are used. 
 
 
 The
@@ -147,6 +147,8 @@ only a lookup API, no STAC.
 
 
 ## Where GeoNetwork fits
+
+See [BMD GeoNetwork catalog](https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/search?isTemplate=n&resourceTemporalDateRange=%7B%22range%22:%7B%22resourceTemporalDateRange%22:%7B%22gte%22:null,%22lte%22:null,%22relation%22:%22intersects%22%7D%7D%7D&sortBy=relevance&sortOrder=&query_string=%7B%22resourceType%22:%7B%22dataset%22:true%7D,%22groupOwner%22:%7B%22125%22:true%7D%7D&from=1&to=30) maintained by LifeWatch ERIC.
 
 GeoNetwork answers "does this dataset exist, who made it, is it fit for
 a person to pursue" — discovery and compliance (ISO 19115/EML, INSPIRE).
