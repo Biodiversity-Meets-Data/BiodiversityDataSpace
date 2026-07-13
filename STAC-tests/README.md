@@ -55,8 +55,66 @@ The idea is the catalog needs to describe all of these formats in a general mann
 collection, distinguished by their asset `type` and the extension they
 declare. 
 
+### CHELSA data 
 
-### Some examples/references: 
+We created a Data Cube collection and inside that there are items with metadata 
+cointaining bioclimatic variables, EEA extent, EPSG:3035. And pointing to the Zarr files. 
+
+For now, the item holds 19 assets, bio01 through bio19, one per bioclimatic
+variable. 
+
+snippet 
+```
+"title": "CHELSA bioclimatic variable bio14",
+      "description": "Bands represent projection combinations along the NetCDF/Zarr projection dimension.",
+      "xarray:variable": "bio14",
+      "proj:epsg": 3035,
+      "proj:shape": [
+        446,
+        476
+      ],
+      "proj:transform": [
+        10000,
+        0,
+        2380000,
+        0,
+        10000,
+        1210000,
+        0,
+        0,
+        1
+      ]
+    },
+    "bio15": {
+      "href": "s3://bmd-storage/chelsa/europe_chelsa_10km_eea_bioclim_epsg3035.zarr",
+      "type": "application/vnd+zarr",
+      "roles": [
+        "data"
+      ],
+      "title": "CHELSA bioclimatic variable bio15",
+      "description": "Bands represent projection combinations along the NetCDF/Zarr projection dimension.",
+      "xarray:variable": "bio15",
+      "proj:epsg": 3035,
+      "proj:shape": [
+        446,
+        476
+      ],
+      "proj:transform": [
+        10000,
+        0,
+        2380000,
+        0,
+        10000,
+        1210000,
+        0,
+        0,
+        1
+      ]
+    },
+```
+
+
+### Some external examples/references: 
 
 COG for raster imagery (range-read friendly, 368x faster than
 a full download per
