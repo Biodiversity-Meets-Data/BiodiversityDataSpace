@@ -130,6 +130,12 @@ a good writeup), GeoParquet for vector/tabular data, NetCDF also has its own "ca
 
 The main point is: STAC doesn't care which of these internal catalogs are used. 
 
+Storage is the foundation, but formats are what make cloud-native geospatial actually work.
+
+You can put any file in cloud storage. A shapefile, a GeoTIFF, a KML file, whatever. But just because it’s in the cloud doesn’t mean it’s cloud-native. And there’s a big difference between the two.
+https://forrest.nyc/cloud-native-geospatial-formats-geoparquet-zarr-cog-and-pmtiles-explained/ 
+
+
 
 The
 [Cloud-Native Geospatial guide's producer cookbook](https://guide.cloudnativegeo.org/cookbooks/zarr-stac-report/data-producers/)
