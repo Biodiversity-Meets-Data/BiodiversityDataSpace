@@ -39,6 +39,9 @@ Yes, we can create a table wit `path, bbox, crs, date`. But:
 STAC can be standardised, with a schema and API that is known. 
 
 
+![image](STAC-geospatial-arch.png)
+Fig1: A conceptual vision of how STAC fits in the architecture (image AI generated). 
+
 ## How BMD is testing this
 
 We are tesitng our first Data Cubes and analysis, workflow pipeline. We are also working FAIR and Data Space concepts around metadata, data governance, provenance etc. 
