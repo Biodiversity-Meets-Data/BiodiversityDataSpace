@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: BMD Data Cube Engine API (draft; AI generated)
+  version: 0.1.0
+  description: >
+    Design draft. Follows the site-keyed resource pattern already used in
+    /sites/{siteCode}/metadata, but models cube generation as an async job
+    rather than a synchronous resource fetch — cube builds are expected to
+    take longer than a request/response cycle.
+
+    Open design questions to resolve before this is real:
+    - Sync vs async: is there a fast path (cached/pre-built cube) that can
+      return 200 immediately, falling back to 202+job for cold cubes?
+    - Idempotency: should repeated identical POSTs return the same job
+      (via a request hash / Idempotency-Key header) instead of spawning
+      duplicate builds?
+    - Delivery: poll-based (client hits /datacubes/{jobId}) vs push
+      (webhook callback URL supplied in the request) — or both?
+    - Result shape: raw array (Zarr/NetCDF href) vs wrapped as a STAC Item
+      (consistent with your existing STAC catalog work)?
+    - Auth/scope: who can trigger a build for a given site — tied to the
+      dataspace's existing ODRL policies / DSP negotiation, or separate?
+
+servers:
+  - url: https://dataspace.bmdproject.eu
+
+tags:
+  - name: datacubes
+
+paths:
+  /sites/{siteCode}/datacubes:
+    post:
+      tags: [datacubes]
+      summary: Trigger a data cube build for a site
+      operationId: triggerDataCube
+      parameters:
+        - name: siteCode
+          in: path
+          required: true
+          schema: { type: string }
+          example: AT1101112
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DataCubeRequest' }
+      responses:
+        '202':
+          description: Build accepted, job created
+          headers:
+            Location:
+              description: URL of the created job resource
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DataCubeJob' }
+        '200':
+          description: Cube already exists / cached — returned immediately
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DataCubeJob' }
+
+  /datacubes/{jobId}:
+    get:
+      tags: [datacubes]
+      summary: Poll build status
+      operationId: getDataCubeJob
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Current job state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DataCubeJob' }
+        '404':
+          description: No such job
+
+  /datacubes/{jobId}/result:
+    get:
+      tags: [datacubes]
+      summary: Fetch the built cube once status is succeeded
+      operationId: getDataCubeResult
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: The built cube, returned as a STAC Item
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/StacItem' }
+        '409':
+          description: Job not yet succeeded
+
+components:
+  schemas:
+    DataCubeRequest:
+      type: object
+      required: [variables, temporalRange]
+      properties:
+        variables:
+          type: array
+          items: { type: string }
+          example: ["ndvi", "land_cover"]
+        temporalRange:
+          type: object
+          properties:
+            start: { type: string, format: date }
+            end: { type: string, format: date }
+        spatialResolution:
+          type: string
+          example: "10m"
+        callbackUrl:
+          type: string
+          description: Optional webhook to notify on completion, alternative to polling
+
+    DataCubeJob:
+      type: object
+      properties:
+        jobId: { type: string }
+        siteCode: { type: string }
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        progress: { type: number, minimum: 0, maximum: 1 }
+        createdAt: { type: string, format: date-time }
+        resultUrl: { type: string }
+        error: { type: string, nullable: true }
+
+    StacItem:
+      type: object
+      description: >
+        Minimal STAC Item shape for the built cube. Placeholder fields —
+        align with your existing BMD STAC catalog conventions (collection
+        membership, ODRL usage policy, DSP negotiate link) once those are
+        finalized for this use case.
+      required: [type, id, geometry, properties, assets]
+      properties:
+        type: { type: string, enum: [Feature] }
+        stac_version: { type: string, example: "1.0.0" }
+        id: { type: string, example: "AT1101112-ndvi-2024" }
+        collection: { type: string, example: "bmd-datacubes" }
+        geometry:
+          type: object
+          description: GeoJSON geometry of the site extent
+        bbox:
+          type: array
+          items: { type: number }
+        properties:
+          type: object
+          properties:
+            datetime: { type: string, format: date-time, nullable: true }
+            start_datetime: { type: string, format: date-time }
+            end_datetime: { type: string, format: date-time }
+        assets:
+          type: object
+          description: Map of asset key to asset object (e.g. "data", "thumbnail")
+          additionalProperties:
+            type: object
+            properties:
+              href: { type: string }
+              type: { type: string, example: "application/x-zarr" }
+              roles:
+                type: array
+                items: { type: string }
+        links:
+          type: array
+          description: >
+            Include the dataspace's ODRL usage-policy link and DSP negotiate
+            endpoint here, matching the existing STAC catalog pattern.
+          items:
+            type: object
+            properties:
+              rel: { type: string }
+              href: { type: string }
+              type: { type: string }
