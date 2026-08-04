@@ -56,6 +56,9 @@ The idea is the catalog needs to describe all of these formats in a general mann
 collection, distinguished by their asset `type` and the extension they
 declare. 
 
+See also the STAC examples with Data Space concepts, ODRL etc here: [STAC-tests/examples/README.md](https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/tree/main/STAC-tests/examples). 
+
+
 ### CHELSA data 
 
 We created a Data Cube collection and inside that there are items with metadata 
