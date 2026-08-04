@@ -1,0 +1,49 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Feature",
+  "id": "species-data-2026-06-01",
+  "collection": "example-habitat-datasets-2025",
+  "bbox": [10.0, 50.0, 10.5, 50.5],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+      [10.0, 50.0], [10.5, 50.0], [10.5, 50.5], [10.0, 50.5], [10.0, 50.0]
+    ]]
+  },
+  "properties": {
+    "datetime": "2026-06-01T09:30:00Z",
+    "odrl:policy": {
+      "@context": [
+        "http://www.w3.org/ns/odrl.jsonld",
+        "https://w3c.github.io/odrl/profile-dataspaces/context.jsonld"
+      ],
+      "uid": "urn:uuid:3f8c9d20-1a2b-4f1b-8bd6-0123456789ab",
+      "@type": "Policy",
+      "profile": "https://w3c.github.io/odrl/profile-dataspaces/",
+      "title": "Academic use only",
+      "permission": [
+        {
+          "target": "https://data.example.org/drone/2026/06/01/ortho.tif",
+          "action": { "@type": "odrl:Action", "name": "display" },
+          "assignee": { "uid": "mailto:access@university.edu", "name": "University Department" },
+          "assigner": { "uid": "https://example.org/companies/uav-provider", "name": "UAV Provider" },
+          "constraint": [
+            {
+              "leftOperand": "odrl:purpose",
+              "operator": "eq",
+              "rightOperand": "https://example.org/purpose/education"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "assets": {
+    "assetid1": {
+      "href": "https://data.example.org/drone/2026/06/01/ortho.tif",
+      "type": "image/tiff; application=geotiff",
+      "roles": ["data", "ortho"],
+      "title": "Drone data"
+    }
+  }
+}
