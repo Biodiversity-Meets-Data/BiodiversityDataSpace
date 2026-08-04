@@ -1,0 +1,27 @@
+{
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "uid": "https://policies.example.org/odrl/landsat-8-default-policy.jsonld",
+  "@type": "Policy",
+  "profile": "http://www.w3.org/ns/odrl/profile/basic",
+  "title": "Landsat Basic Research Use Policy",
+  "permission": [
+    {
+      "target": "https://data.example.org/landsat/2024/07/15/landsat-8_B4.tif",
+      "action": {"@type": "odrl:Action", "name": "use"},
+      "assignee": {"uid": "https://example.org/agents/researchers", "name": "Researcher Community"},
+      "assigner": {"uid": "https://example.org/organizations/data-provider", "name": "Data Provider"},
+      "constraint": [
+        {
+          "leftOperand": "odrl:purpose",
+          "operator": "eq",
+          "rightOperand": "http://vocab.example.org/purpose/research"
+        },
+        {
+          "leftOperand": "odrl:count",
+          "operator": "lteq",
+          "rightOperand": 100
+        }
+      ]
+    }
+  ]
+}
