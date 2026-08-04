@@ -1,0 +1,141 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+
+  "id": "example-habitat-datasets-2025",
+
+  "title": "Example habitat suitability datasets 2025",
+
+  "description": "Predicted habitat suitability for selected species. This STAC Collection represents a machine-readable geospatial data product for Biodiversity Data Space ecosystem.",
+
+  "license": "CC-BY-4.0",
+
+  "keywords": [
+    "habitat",
+    "species",
+    "ecology",
+    "model"
+  ],
+
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+
+  "sci:doi": "10.1234/habitat-model-2025",
+
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          3.20,
+          50.70,
+          7.30,
+          53.60
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-01-01T00:00:00Z",
+          "2025-04-05T00:00:00Z"
+        ]
+      ]
+    }
+  },
+
+  "providers": [
+    {
+      "name": "Example Data Provider.",
+      "roles": [
+        "producer",
+        "host"
+      ],
+      "url": "https://provider.example.org"
+    },
+    {
+      "name": "Regional Research Infrastructure",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://rri.example.org"
+    }
+  ],
+
+  "assets": {
+
+    "thumbnail": {
+      "href": "https://dataspace.example.org/previews/habitat-suitability-2025.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Collection preview"
+    },
+
+    "provider-api": {
+      "href": "https://provider.example.org/api/habitat-suitability/2025",
+      "type": "application/json",
+      "roles": [
+        "api"
+      ],
+      "title": "Provider API"
+    }
+
+  },
+
+  "links": [
+
+    {
+      "rel": "self",
+      "href": "https://dataspace.example.org/stac/collections/habitat-suitability-2025",
+      "type": "application/json"
+    },
+
+    {
+      "rel": "root",
+      "href": "https://dataspace.example.org/stac/",
+      "type": "application/json"
+    },
+
+    {
+      "rel": "items",
+      "href": "https://dataspace.example.org/stac/collections/habitat-suitability-2025/items",
+      "type": "application/geo+json"
+    },
+
+    {
+      "rel": "search",
+      "href": "https://dataspace.example.org/stac/search",
+      "type": "application/json",
+      "title": "STAC API Search"
+    },
+
+    {
+      "rel": "describedby",
+      "href": "https://dataspace.example.org/dcat/dataset/habitat-suitability-2025",
+      "type": "application/ld+json",
+      "title": "DCAT metadata"
+    },
+
+    {
+      "rel": "https://www.w3.org/ns/odrl/2/",
+      "href": "https://dataspace.example.org/policies/research-access.jsonld",
+      "type": "application/ld+json",
+      "title": "Usage policy (ODRL)"
+    },
+
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1234/habitat-model-2025",
+      "title": "Persistent identifier"
+    },
+
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    }
+
+  ]
+}
