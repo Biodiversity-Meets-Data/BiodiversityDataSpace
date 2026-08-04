@@ -1,0 +1,35 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Feature",
+  "id": "landsat-8-2024-07-15",
+  "bbox": [-123.5, 45.0, -122.0, 46.0],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+      [-123.5, 45.0], [-122.0, 45.0], [-122.0, 46.0], [-123.5, 46.0], [-123.5, 45.0]
+    ]]
+  },
+  "properties": {
+    "datetime": "2024-07-15T10:12:00Z"
+  },
+  "assets": {
+    "B4": {
+      "href": "https://data.example.org/landsat/2024/07/15/landsat-8_B4.tif",
+      "type": "image/tiff; application=geotiff",
+      "roles": ["data"]
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://catalog.example.org/stac/items/landsat-8-2024-07-15",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "license",
+      "href": "https://policies.example.org/odrl/landsat-8-dataspace-policy.jsonld",
+      "type": "application/ld+json",
+      "title": "ODRL Data Spaces policy for Landsat assets"
+    }
+  ]
+}
