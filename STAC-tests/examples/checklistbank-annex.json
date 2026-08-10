@@ -1,0 +1,49 @@
+{
+  "id": "checklistbank-314298",
+  "type": "Feature",
+  "stac_version": "1.1.0",
+
+  "properties": {
+    "title": "Habitats Directive Annex II - Animal and plant species of Community interest",
+    "description": "...",
+
+    "created": "2026-08-04T08:24:35Z",
+    "updated": "2026-08-06T07:53:38Z",
+
+    "license": "CC0-1.0",
+
+    "bmd:source_id": "314298",
+    "bmd:source_alias": "EUHDAnnexII",
+    "bmd:source_doi": "https://doi.org/10.48580/dgwqw"
+  },
+
+  "providers": [
+    {
+      "name": "European Union",
+      "roles": ["producer"]
+    },
+    {
+      "name": "Biodiversity Meets Data",
+      "roles": ["processor"]
+    },
+    {
+      "name": "BMD Data Space/Naturalis",
+      "roles": ["host"]
+    }
+  ],
+
+  "links": [
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.48580/dgwqw"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "rel": "source",
+      "href": "https://www.checklistbank.org/dataset/314298/metadata"
+    }
+  ]
+}
