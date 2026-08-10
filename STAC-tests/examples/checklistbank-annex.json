@@ -1,49 +1,100 @@
 {
-  "id": "checklistbank-314298",
   "type": "Feature",
   "stac_version": "1.1.0",
-
-  "properties": {
-    "title": "Habitats Directive Annex II - Animal and plant species of Community interest",
-    "description": "...",
-
-    "created": "2026-08-04T08:24:35Z",
-    "updated": "2026-08-06T07:53:38Z",
-
-    "license": "CC0-1.0",
-
-    "bmd:source_id": "314298",
-    "bmd:source_alias": "EUHDAnnexII",
-    "bmd:source_doi": "https://doi.org/10.48580/dgwqw"
+  "stac_extensions": [],
+  "id": "checklistbank-species-list-single",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [180, -90],
+        [180, 90],
+        [-180, 90],
+        [-180, -90],
+        [180, -90]
+      ]
+    ]
   },
-
+  "bbox": [-180, -90, 180, 90],
+  "properties": {
+    "title": "ChecklistBank species list",
+    "description": "Single-parquet derivative of a ChecklistBank table.",
+    "datetime": "2026-08-04T08:23:35.672651Z",
+    "citation": "Derived from ChecklistBank dataset 314298; published/licensed by EEA.",
+    "prov:wasDerivedFrom": ["https://api.checklistbank.org/dataset/314298.yaml"],
+    "prov:generatedBy": {
+      "name": "BMD ETL process",
+      "version": "0.1",
+      "script": "bmd-etl/checklistbank_transform.py"
+    },
+    "prov:generatedAtTime": "2026-08-04T08:23:35.672651Z"
+  },
   "providers": [
     {
-      "name": "European Union",
-      "roles": ["producer"]
+      "name": "ChecklistBank",
+      "roles": ["producer"],
+      "url": "https://api.checklistbank.org",
+      "description": "Original dataset record (source)"
     },
     {
-      "name": "Biodiversity Meets Data",
-      "roles": ["processor"]
+      "name": "The European Environment Agency (EEA)",
+      "roles": ["licensor", "publisher"],
+      "url": "http://eea.europa.eu",
+      "email": "info@eea.europa.eu"
     },
     {
-      "name": "BMD Data Space/Naturalis",
-      "roles": ["host"]
+      "name": "BMD Project",
+      "roles": ["processor", "host"],
+      "url": "https://doi.org/10.3030/101181294"
     }
   ],
-
   "links": [
     {
-      "rel": "cite-as",
-      "href": "https://doi.org/10.48580/dgwqw"
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://example.org/stac/collections/checklistbank/items/checklistbank-species-list-single"
     },
     {
+      "rel": "derived_from",
+      "href": "https://api.checklistbank.org/dataset/314298.yaml",
+      "type": "text/yaml",
+      "title": "ChecklistBank source dataset (YAML)"
+    },
+   {
       "rel": "license",
       "href": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
-    {
-      "rel": "source",
-      "href": "https://www.checklistbank.org/dataset/314298/metadata"
+  ],
+  "assets": {
+    "table": {
+      "href": "s3://REDACTED/checklistbank/Species_List.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Species List (parquet)",
+      "description": "Derived parquet table transformed from ChecklistBank.",
+      "file:size": 18950,
+      "table:row_count": 180,
+      "table:columns": [
+        "id",
+        "scientific_name",
+        "authorship",
+        "rank",
+        "status",
+        "label",
+        "parent_id",
+        "extinct",
+        "group",
+        "col_id",
+        "class",
+        "order",
+        "family",
+        "species",
+        "subfamily",
+        "infraspecific name",
+        "gbif_taxon_id",
+        "gbif_match_type"
+      ],
+      "roles": ["data"]
     }
-  ]
+  },
+  "collection": "checklistbank"
 }
