@@ -133,6 +133,44 @@ This Item reuses Natura 2000 site data originally produced by the
 ]
 ```
 
+## Example: Checklistbank data 
+
+
+This (https://github.com/Biodiversity-Meets-Data/BiodiversityDataSpace/blob/main/STAC-tests/examples/checklistbank-annex.json) is a simplified STAC Item example that describes a single Parquet table derived from a ChecklistBank dataset. The Item records basic provenance (who created, who published/licenced, who transformed/hosts) and includes an asset describing the Parquet file and its column layout.
+
+### Provenance hop (EEA → ChecklistBank → BMD)
+-------------------------------------------
+- EEA (European Environment Agency)
+  - Acts as the dataset creator / licensor in the source chain.
+  - The EEA is acknowledged in links and providers so users know the licence and publisher.
+- ChecklistBank
+  - The source/producer of the taxonomic checklist (referenced via its dataset YAML URL).
+  - Represented in providers as the original producer and included as a `derived_from` link.
+- BMD Project
+  - Processes/transforms the ChecklistBank tables into a Parquet file (this STAC Item).
+  - Listed in providers as the processor/host and the `prov:generatedBy` block records the ETL script and version.
+
+### How this is represented in the STAC Item
+----------------------------------------
+- providers: records ChecklistBank (producer), EEA (licensor/publisher), and BMD (processor/host).
+- links:
+  - `derived_from` → the ChecklistBank dataset YAML (source).
+  - `license` → EEA licence URL (placeholder in the example; replace with the real URL or SPDX identifier).
+- properties:
+  - Small PROV-like fields (`prov:wasDerivedFrom`, `prov:generatedBy`, `prov:generatedAtTime`) for quick traceability.
+  - `citation` / acknowledgement text for human-readable attribution.
+- assets:
+  - Single `table` asset with `type: application/vnd.apache.parquet`, `roles: ["data"]`.
+  - Includes `table:row_count`, `file:size`, and `table:columns` (the column list you requested — preserved exactly).
+  - These asset-level fields let tools decide which file to download and how to interpret it.
+
+
+- Standardized metadata: STAC defines `providers`, `links`, `assets`, and `properties`, giving a common, machine-readable structure.
+- Explicit links: `derived_from` and `license` links make the source and licence discoverable and machine-actionable.
+- Asset-first model: Each data file is an asset with MIME type, roles, size, and optional checksums — ideal for datasets with many files or formats.
+- Indexing & discovery: STAC catalogs/collections enable search by item properties (e.g., dataset id, datetime) and efficient harvesting by STAC APIs.
+- Interoperability: STAC maps cleanly to other metadata standards (ISO/OGC, PROV, ODRL), so you can export or harvest into other catalogues.
+- Lightweight provenance: Basic `prov:` fields or a PROV extension are sufficient for most users; stronger W3C-PROV or ODRL links can be added when needed.
 
 
 
