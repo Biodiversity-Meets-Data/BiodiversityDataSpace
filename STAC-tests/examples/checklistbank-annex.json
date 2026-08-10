@@ -32,13 +32,13 @@
   "providers": [
     {
       "name": "ChecklistBank",
-      "roles": ["producer"],
+      "roles": ["publisher"],
       "url": "https://api.checklistbank.org",
       "description": "Original dataset record (source)"
     },
     {
       "name": "The European Environment Agency (EEA)",
-      "roles": ["licensor", "publisher"],
+      "roles": ["licensor", "producer"],
       "url": "http://eea.europa.eu",
       "email": "info@eea.europa.eu"
     },
