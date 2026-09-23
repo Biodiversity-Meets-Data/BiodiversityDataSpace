@@ -1,5 +1,7 @@
 # Why STAC for BMD 
 
+See OUR STAC Collection repo here: https://github.com/Biodiversity-Meets-Data/STAC-collections/tree/main
+
 These tests are work in progress. Here are our current ideas and summary. 
 
 From https://www.ogc.org/standards/stac/
